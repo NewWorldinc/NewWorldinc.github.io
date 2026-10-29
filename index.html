@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Abhinav Sridhar</title>
+  <meta name="description" content="Founding engineer at All About City. Data Science & AI at NTU. Production work on Next.js, Payload CMS and Postgres.">
+  <meta property="og:title" content="Abhinav Sridhar">
+  <meta property="og:description" content="Founding engineer at All About City. Data Science & AI at NTU.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="nav">
+  <a class="nav-name" href="#top">Abhinav Sridhar</a>
+  <nav class="nav-links" aria-label="Sections">
+    <a href="#work">Work</a>
+    <a href="#log">Log</a>
+    <a href="#projects">Projects</a>
+    <a href="#about">About</a>
+    <a class="nav-cta" href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="hero-copy">
+      <p class="eyebrow">Singapore · Founding engineer, All About City</p>
+      <h1>I moved a 2M-reader publishing network off WordPress while it stayed live.</h1>
+      <p class="lede">
+        Year 3 Data Science &amp; AI at NTU. Since June 2026 I've been the only engineer on a
+        multi-brand news platform: the CMS, the database, the deploys, and the runbooks that
+        make production changes boring.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#work">See the work</a>
+        <a class="btn btn-ghost" href="https://github.com/NewWorldinc">GitHub</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/abhinav-sridhar-dsai/">LinkedIn</a>
+      </div>
+    </div>
+
+    <!-- The runbook card. Every production change at AAC goes through these five steps. -->
+    <aside class="runbook" aria-label="How I ship a production change">
+      <div class="runbook-head">
+        <span class="runbook-title">RUNBOOK</span>
+        <span class="runbook-id">schema gate · batch 25</span>
+      </div>
+      <ol class="runbook-steps">
+        <li data-step><span class="tick"></span><span class="step-label">Snapshot</span><span class="step-note">full dump before anything else</span></li>
+        <li data-step><span class="tick"></span><span class="step-label">Dry run</span><span class="step-note">same script, no writes, read the diff</span></li>
+        <li data-step><span class="tick"></span><span class="step-label">Undo log</span><span class="step-note">every row touched gets a reverse row</span></li>
+        <li data-step><span class="tick"></span><span class="step-label">Execute</span><span class="step-note">one migration, one token, one terminal</span></li>
+        <li data-step><span class="tick"></span><span class="step-label">Verify</span><span class="step-note">ledger head, counts, live URLs</span></li>
+      </ol>
+      <div class="runbook-foot">
+        <span class="status-dot"></span>
+        <span class="runbook-status" data-status>running</span>
+      </div>
+    </aside>
+  </section>
+
+  <!-- Work -->
+  <section id="work" class="section">
+    <div class="section-head">
+      <h2>All About City</h2>
+      <p class="section-sub">
+        AAC is a Singapore-based network of expat and city publications: allabout.city, expat.guide and a shelf
+        of sibling titles. I joined in June 2026 to replace an aging WordPress install with something the business
+        could build on. Four months later it runs on Next.js, Payload CMS and Postgres, serves two brands from one
+        deployment, and the sites never went down.
+      </p>
+    </div>
+
+    <div class="cards cards-3">
+      <article class="card reveal">
+        <p class="card-kicker">Content migration</p>
+        <h3>700+ articles out of WordPress, by crawling the rendered pages</h3>
+        <p>
+          The WP API loses Elementor and shortcode content, so I wrote a resumable crawler that treats the rendered
+          page as ground truth: gzipped raw HTML, extracted JSON, a media manifest and a SQLite index. Then a series
+          of dry-run-first repair passes: 4,600+ image nodes converted, 4,300+ repositioned, 2,300+ duplicates removed.
+        </p>
+        <ul class="tags">
+          <li>Python</li><li>BeautifulSoup</li><li>SQLite</li><li>Lexical</li>
+        </ul>
+      </article>
+
+      <article class="card reveal">
+        <p class="card-kicker">Production discipline</p>
+        <h3>Gated migrations instead of deploy-time surprises</h3>
+        <p>
+          Every schema change ships as a numbered batch with its own runbook: snapshot, dry run, undo log, execute,
+          verify. Migrations never run as a side effect of a deploy, a per-gate token stops scripts touching prod by
+          accident, and a build-info endpoint proves which commit is actually live.
+        </p>
+        <ul class="tags">
+          <li>Payload migrations</li><li>SSH tunnels</li><li>TypeScript scripts</li>
+        </ul>
+      </article>
+
+      <article class="card reveal">
+        <p class="card-kicker">Domain flip and SEO recovery</p>
+        <h3>5,400+ redirects and a cleanup of what Google saw</h3>
+        <p>
+          Cut the apex domain over to the new stack with a bulk redirect list covering the old URL space and a
+          12-hour watchman monitoring the flip. When rankings dipped, I audited Search Console, built a 404-to-live
+          redirect map, removed dead sitemaps and fixed canonical and trailing-slash drift.
+        </p>
+        <ul class="tags">
+          <li>Cloudflare Rules</li><li>Workers</li><li>Search Console</li>
+        </ul>
+      </article>
+
+      <article class="card reveal">
+        <p class="card-kicker">Second brand, same codebase</p>
+        <h3>Launching expat.guide as a tenant of the platform</h3>
+        <p>
+          Built the nationality-first structure (55 community pages, embassy data, an A-to-Z register) and shipped
+          it as a second site resolved by hostname. The brands share layout components; CSS is split into a
+          structure layer both use and a paint layer each brand owns.
+        </p>
+        <ul class="tags">
+          <li>Multi-tenant routing</li><li>Design tokens</li><li>Editorial tooling</li>
+        </ul>
+      </article>
+
+      <article class="card reveal">
+        <p class="card-kicker">A CMS editors actually use</p>
+        <h3>Payload admin reshaped for non-technical authors</h3>
+        <p>
+          Human labels on every field, navigation grouped the way editors think, live preview of the real site
+          beside the editor, and a paste box that ingests whole markdown articles under a versioned content
+          contract. A publish gate blocks any article that still carries an unverified claim.
+        </p>
+        <ul class="tags">
+          <li>Payload CMS</li><li>Live preview</li><li>Content contracts</li>
+        </ul>
+      </article>
+
+      <article class="card reveal">
+        <p class="card-kicker">Security and the business side</p>
+        <h3>2FA, fail-closed tenancy and the paid-listings pipeline</h3>
+        <p>
+          TOTP two-factor for admin accounts, login lockout, contributors who can't publish, and access rules that
+          fail closed across sites. On the revenue side: a listings directory, a public business-submission form
+          with layered anti-abuse, an approval inbox, and labelled recommended placements on articles.
+        </p>
+        <ul class="tags">
+          <li>Access control</li><li>TOTP</li><li>Click tracking</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- Shipping log -->
+  <section id="log" class="section section-tight">
+    <div class="section-head">
+      <h2>Shipping log</h2>
+      <p class="section-sub">The production changes I'd point to first. Dates are when they went live.</p>
+    </div>
+
+    <ol class="log">
+      <li class="log-item reveal">
+        <time datetime="2026-06-03">Jun 2026</time>
+        <div>
+          <h3>Platform from a blank repo</h3>
+          <p>First commit on 3 June. By the end of the month: content model, hostname-based multi-tenancy, redirect map served from middleware, admin 2FA, the editorial redesign, and the image-recovery passes over the migrated corpus.</p>
+        </div>
+      </li>
+      <li class="log-item reveal">
+        <time datetime="2026-07-15">Jul 2026</time>
+        <div>
+          <h3>allabout.city cut over to the new stack</h3>
+          <p>DNS flip, 5,442-row bulk redirect list, legacy archive Worker, old server quarantined after a malware finding. Three WordPress databases dumped, integrity-checked and stored off-box.</p>
+        </div>
+      </li>
+      <li class="log-item reveal">
+        <time datetime="2026-08-24">Aug 2026</time>
+        <div>
+          <h3>Post-migration SEO recovery</h3>
+          <p>125 verified 404-to-live redirects, three dead sitemaps removed from Search Console, canonical drift fixed, indexing requested on priority pages. Found and worked around a silent CSV import failure on CRLF line endings.</p>
+        </div>
+      </li>
+      <li class="log-item reveal">
+        <time datetime="2026-09-15">Sep 2026</time>
+        <div>
+          <h3>expat.guide live</h3>
+          <p>Schema gate for the communities collection applied to prod, 55 communities seeded and published through a scripted gate, domain pointed at the shared platform. Both brands served from one deployment.</p>
+        </div>
+      </li>
+      <li class="log-item reveal">
+        <time datetime="2026-10-09">Oct 2026</time>
+        <div>
+          <h3>One skin for every site</h3>
+          <p>After the owner decided both brands should share one design, the per-brand theme was retired and the Kiosk layout became the default for any site in the registry, with only logo and colour tokens varying. Verified deploy, documented rollback target.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="section">
+    <div class="section-head">
+      <h2>University projects</h2>
+      <p class="section-sub">Coursework from the NTU Data Science &amp; AI programme that I'd still stand behind.</p>
+    </div>
+
+    <div class="cards cards-2">
+      <article class="card reveal">
+        <p class="card-kicker">SC4020 · Recommender systems · Oct 2026</p>
+        <h3>Neural Collaborative Filtering, with the ablation</h3>
+        <p>
+          Group technical review comparing MF, SVD++ and NCF on MovieLens-1M and Amazon Electronics, scored on
+          HR@10 and NDCG@10 against 99 fixed negatives. I owned NCF: GMF, MLP and NeuMF in PyTorch, a grid over
+          factors and learning rate, ablations on depth, negatives and pretraining, three seeds per pick.
+        </p>
+        <p>
+          Pretrained NeuMF reached HR@10 0.684 on ML-1M, 27 points over popularity. On Amazon every neural model
+          landed within a point of the popularity baseline, which became the most useful finding in the report.
+        </p>
+        <ul class="tags">
+          <li>PyTorch</li><li>Implicit feedback</li><li>Experiment design</li>
+        </ul>
+      </article>
+
+      <article class="card reveal">
+        <p class="card-kicker">SC2002 · Object-oriented design</p>
+        <h3>BTO Management System</h3>
+        <p>
+          Command-line system for Singapore's Build-To-Order housing flow with three roles (applicant, HDB
+          officer, HDB manager), a six-layer architecture and a small dependency-injection container. Repository,
+          factory, strategy and singleton patterns where they earned their place, and JavaDoc throughout.
+        </p>
+        <ul class="tags">
+          <li>Java</li><li>SOLID</li><li>Layered architecture</li>
+        </ul>
+        <a class="card-link" href="https://github.com/NewWorldinc/2002-FCSE-Group-6">Source on GitHub</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="section section-split">
+    <div>
+      <h2>About</h2>
+      <p>
+        I'm in my third year of Data Science &amp; AI at Nanyang Technological University, graduating in 2028.
+        Alongside the degree I'm the founding engineer at All About City, where I'm the only developer and the
+        person who runs anything that touches production.
+      </p>
+      <p>
+        That has shaped how I work. I write the runbook before the script, I keep an undo log for every data
+        change, and I'd rather ship a smaller change that I can verify than a bigger one I have to hope about.
+        Most of what I know about operating a real system I learned by being the only person around when it broke.
+      </p>
+      <p>
+        Outside of work I host a podcast and spend too much time thinking about how media businesses make money.
+      </p>
+    </div>
+
+    <div class="stack">
+      <h3>Stack I use most</h3>
+      <dl>
+        <dt>Web</dt><dd>Next.js, React, TypeScript, Payload CMS, Lexical</dd>
+        <dt>Data</dt><dd>PostgreSQL, Drizzle, Python, pandas, PyTorch</dd>
+        <dt>Infra</dt><dd>Docker, Coolify, Cloudflare (DNS, R2, Workers, Rules), Linux</dd>
+        <dt>Also</dt><dd>Java, Git, Search Console, a lot of SQL</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section contact">
+    <h2>Say hello</h2>
+    <p>Open to a full-semester internship for Jan to May 2027, and happy to talk shop before then.</p>
+    <div class="contact-links">
+      <a href="mailto:Abhinav014@e.ntu.edu.sg">Abhinav014@e.ntu.edu.sg</a>
+      <a href="https://www.linkedin.com/in/abhinav-sridhar-dsai/">linkedin.com/in/abhinav-sridhar-dsai</a>
+      <a href="https://github.com/NewWorldinc">github.com/NewWorldinc</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <span>Abhinav Sridhar</span>
+  <span>Built by hand with HTML and CSS. No framework, no tracker.</span>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
